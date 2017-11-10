@@ -1,0 +1,59 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: coherence-client
+  labels:
+    name: coherence-client
+  namespace: coherence-demo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: coherence-client
+    spec:
+      containers:
+      - name: coherence-client
+        image: caffeinatedexpert/docker-coherence:latest
+        command: ["java"]
+        args: ["-cp", "/u01/coherence-12.2.1.0.3.1.jar", "com.tangosol.net.MulticastTest", "-group", "237.0.0.1:9000", "-ttl", "4"]
+        resources:
+          limits:
+            cpu: 300m
+            memory: 2000Mi
+          requests:
+            cpu: 300m
+            memory: 2000Mi
+        ports:
+        - containerPort: 9000
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 10001
+          capabilities:
+            drop:
+              - all
+            add:
+              - NET_BIND_SERVICE
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp-volume
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 300
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 180
+          periodSeconds: 3
+      volumes:
+        - name: tmp-volume
+          emptyDir:
+            medium: Memory
+      nodeSelector:
+        beta.kubernetes.io/os: linux
