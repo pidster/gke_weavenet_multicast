@@ -7,7 +7,7 @@ metadata:
     name: coherence-client
   namespace: coherence-demo
 spec:
-  replicas: 1
+  replicas: 5
   template:
     metadata:
       labels:
