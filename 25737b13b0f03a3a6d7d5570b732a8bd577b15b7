@@ -1,0 +1,1 @@
+{"jobID":"b7bed6ed-0cc7-6a2a-69b7-bfd8300e8767","spec":{"type":"policy","cause":{"Message":"","User":"stuart \u003cstuart@weave.works\u003e"},"spec":{"coherence-demo:deployment/coherence-client":{"add":{"automated":"true"},"remove":null}}},"result":null}
