@@ -1,0 +1,20 @@
+---
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: multicast-test
+  labels:
+    name: multicast-test
+spec:
+  template:
+    metadata:
+      labels:
+        name: multicast-test
+    spec:
+      containers:
+        - name: multicast-test
+          image: 'pidster/multicast-test:0.0.1'
+          imagePullPolicy: Always
+          command: ["/multicast_test"]
+          ports:
+          - containerPort: 7777
