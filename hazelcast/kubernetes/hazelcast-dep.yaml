@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    flux.weave.works/automated: "true"
+  name: hazelcast-deployment
+  labels:
+    name: hazelcast
+  namespace: hazelcast-demo
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: hazelcast
+    spec:
+      containers:
+      - name: hazelcast
+        image: hazelcast/hazelcast
+       

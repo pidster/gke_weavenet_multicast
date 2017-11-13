@@ -1,0 +1,15 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  annotations:
+    flux.weave.works/automated: "true"
+  name: my-service
+spec:
+  type: NodePort
+  selector:
+    app: management-center
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
