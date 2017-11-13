@@ -17,5 +17,5 @@ spec:
     spec:
       containers:
       - name: hazelcast
-        image: hazelcast/hazelcast:3.9
+        image: hazelcast/hazelcast:3.8.7
        
