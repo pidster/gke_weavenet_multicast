@@ -19,7 +19,7 @@ spec:
       - name: coherence-client
         image: caffeinatedexpert/docker-coherence:latest
         command: ["java"]
-        args: ["-cp", "/u01/coherence-12.2.1.0.3.1.jar", "com.tangosol.net.MulticastTest", "-group", "224.0.0.1:9000", "-ttl", "4"]
+        args: ["-cp", "/u01/coherence-12.2.1.0.3.1.jar", "com.tangosol.net.MulticastTest", "-group", "224.0.0.1:9000", , "-packetSize", "1366", "-ttl", "4"]
         resources:
           limits:
             cpu: 300m
