@@ -4,14 +4,15 @@ kind: Deployment
 metadata:
   annotations:
     flux.weave.works/automated: "true"
-  name: management-center
+  name: hazelcast-management-center
+  namespace: hazelcast-demo
 spec:
   replicas: 1
   template:
    metadata:
      labels:
-       app: management-center
+       app: hazelcast-management-center
    spec:
      containers:
      - name: hazelcast
-       image: hazelcast/management-center
+       image: hazelcast/management-center:3.9
